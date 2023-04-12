@@ -1,0 +1,17 @@
+[tool.pdm]
+
+[project]
+name = "tinysearch"
+version = "0.1.0"
+description = "Tiny one-phase search engine"
+authors = [
+    {name = "Domagoj Marsic", email = "dmars@protonmail.com"},
+]
+dependencies = []
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
