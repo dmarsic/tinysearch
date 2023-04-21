@@ -4,5 +4,7 @@ fmt:
 test: fmt
 	pdm test
 
-build: test
+tag: test
+	git pull
 	pdm build
+	git tag $(shell svu next)

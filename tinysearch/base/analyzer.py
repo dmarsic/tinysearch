@@ -27,4 +27,4 @@ from typing import List
 
 class Analyzer:
     def analyze(self, text: str) -> List[str]:
-        return re.split("\s+", text)
+        return re.split(r"\s+", text)
