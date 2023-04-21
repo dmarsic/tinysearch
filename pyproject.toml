@@ -1,4 +1,18 @@
 [tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest>=7.3.0",
+    "pytest-cov>=4.0.0",
+]
+lint = [
+    "flake8",
+    "black"
+]
+test = ["pytest", "pytest-cov"]
+doc = ["mkdocs"]
+
+[tool.pdm.scripts]
+test = "pytest test"
 
 [project]
 name = "tinysearch"
