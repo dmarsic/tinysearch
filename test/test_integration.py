@@ -1,6 +1,7 @@
 from pytest import fixture
 from tinysearch.search import Search
 
+
 @fixture
 def docs():
     return [
@@ -11,28 +12,17 @@ def docs():
         "Sleep, sleep, little one, sleep",
     ]
 
+
 def test_integration(docs):
     queries = [
-        {
-            "query": "one",
-            "results": 4,
-            "top_result": "One tomato, two tomatoes"
-        },
+        {"query": "one", "results": 4, "top_result": "One tomato, two tomatoes"},
         {
             "query": "day one",
             "results": 4,
-            "top_result": "I went to visit a farm one day"
+            "top_result": "I went to visit a farm one day",
         },
-        {
-            "query": "tomato",
-            "results": 1,
-            "top_result": "One tomato, two tomatoes"
-        },
-        {
-            "query": "bear",
-            "results": 0,
-            "top_result": None
-        }
+        {"query": "tomato", "results": 1, "top_result": "One tomato, two tomatoes"},
+        {"query": "bear", "results": 0, "top_result": None},
     ]
 
     for q in queries:

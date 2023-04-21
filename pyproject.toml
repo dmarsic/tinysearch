@@ -14,6 +14,7 @@ doc = ["mkdocs"]
 
 [tool.pdm.scripts]
 test = "pytest test"
+fmt = "black ."
 
 [project]
 name = "tinysearch"

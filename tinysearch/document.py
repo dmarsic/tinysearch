@@ -4,7 +4,6 @@ Example usage:
 
     t = "There was the distinct sound of the tavern door smashing open."
     d = Document(t)
-    d.analyze()
 
     print(d.tokens)
     # Counter({'there': 1,
@@ -32,16 +31,19 @@ class Document:
     """
 
     def __init__(self, original: str):
+        if original is None:
+            raise ValueError(f"Document needs to be text.")
+
         self.original = original
-        self.tokens = Counter()
+        self.tokens = self.analyze()
 
     def __str__(self):
         return f'"{self.original}"'
 
-    def analyze(self):
+    def analyze(self) -> Counter:
         """Parses the original text into a list of tokens."""
         a = Analyzer()
         tokens = a.analyze(self.original)
 
         # Each token (key) has a term frequency (value)
-        self.tokens.update(tokens)
+        return Counter(tokens)
