@@ -70,6 +70,9 @@ class Results:
 
 class Search:
     def __init__(self, docs: List[str], query: str) -> None:
+        if query is None:
+            raise ValueError("Query must be text.")
+
         self.index = Index(docs)
         self.query = query
         self.results = Results()
