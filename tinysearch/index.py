@@ -16,14 +16,17 @@ Example usage:
 from typing import List
 
 from tinysearch.document import Document
+from tinysearch.base.analyzer import Analyzer
+from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 class Index:
-    def __init__(self, docs: List[str]) -> None:
+    def __init__(self, docs: List[str], analyzer: Analyzer = None) -> None:
+        self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
         self.docs = self.process_docs(docs)
 
     def __str__(self):
-        return f"Index[docs={len(self.docs)}]"
+        return f"Index[docs={len(self.docs)}, analyzer={self.analyzer.__class__}]"
 
     def __repr__(self):
         return self.__str__()
@@ -31,7 +34,7 @@ class Index:
     def process_docs(self, docs: List[str]) -> List[Document]:
         processed = []
         for doc in docs:
-            d = Document(doc)
+            d = Document(doc, analyzer=self.analyzer)
             d.analyze()
             processed.append(d)
         return processed

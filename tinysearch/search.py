@@ -31,7 +31,8 @@ from typing import List
 
 from tinysearch.index import Index
 from tinysearch.document import Document
-from tinysearch.analyzer import Analyzer
+from tinysearch.base.analyzer import Analyzer
+from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 @dataclass
@@ -72,13 +73,15 @@ class Results:
 
 
 class Search:
-    def __init__(self, docs: List[str], query: str) -> None:
+    def __init__(self, docs: List[str], query: str, analyzer: Analyzer = None) -> None:
         if query is None:
             raise ValueError("Query must be text.")
 
-        self.index = Index(docs)
+        self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
+
         self.query = query
         self.results = Results()
+        self.index = Index(docs, analyzer=self.analyzer)
         self.search()
 
     def __str__(self):
@@ -97,8 +100,7 @@ class Search:
 
     def score_doc(self, doc: Document, query: str) -> float:
         tfidf_sum = 0.0
-        a = Analyzer()
-        query_tokens = a.analyze(query)
+        query_tokens = self.analyzer.analyze(query)
         for t in query_tokens:
             tfidf_sum += self.calculate_tfidf(doc, t)
         return tfidf_sum

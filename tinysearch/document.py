@@ -19,7 +19,8 @@ Example usage:
 """
 from collections import Counter
 
-from tinysearch.analyzer import Analyzer
+from tinysearch.base.analyzer import Analyzer
+from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 class Document:
@@ -30,9 +31,11 @@ class Document:
     list (also called terms).
     """
 
-    def __init__(self, original: str):
+    def __init__(self, original: str, analyzer: Analyzer = None):
         if original is None:
             raise ValueError(f"Document needs to be text.")
+
+        self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
 
         self.original = original
         self.tokens = self.analyze()
@@ -45,8 +48,7 @@ class Document:
 
     def analyze(self) -> Counter:
         """Parses the original text into a list of tokens."""
-        a = Analyzer()
-        tokens = a.analyze(self.original)
+        tokens = self.analyzer.analyze(self.original)
 
         # Each token (key) has a term frequency (value)
         return Counter(tokens)

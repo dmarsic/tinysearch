@@ -17,11 +17,10 @@ import re
 import Stemmer
 from typing import List
 
+from tinysearch.base.analyzer import Analyzer
 
-class Analyzer:
-    def __init__(self):
-        pass
 
+class SimpleEnglishAnalyzer(Analyzer):
     @classmethod
     def remove_nonchars(cls, token: str) -> str:
         m = re.search(r"[\w\-]+", token)
@@ -47,9 +46,9 @@ class Analyzer:
         # Apply transformations on each token.
         new_tokens = []
         for token in tokens:
-            token = Analyzer.remove_nonchars(token)
-            token = Analyzer.lower(token)
-            token = Analyzer.stem(token)
+            token = self.remove_nonchars(token)
+            token = self.lower(token)
+            token = self.stem(token)
             new_tokens.append(token)
         tokens = new_tokens
         return tokens

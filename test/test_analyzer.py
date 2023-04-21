@@ -1,4 +1,4 @@
-from tinysearch.analyzer import Analyzer
+from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 def test_analyzer():
@@ -22,7 +22,7 @@ def test_analyzer():
         },
     ]
 
-    a = Analyzer()
+    a = SimpleEnglishAnalyzer()
     for t in test_cases:
         tokens = a.analyze(t["text"])
         assert tokens == t["expected"]
