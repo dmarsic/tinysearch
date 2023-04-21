@@ -186,6 +186,11 @@ requires_python = ">=3.6"
 summary = "passive checker of Python programs"
 
 [[package]]
+name = "pystemmer"
+version = "2.2.0.1"
+summary = "Snowball stemming algorithms, for information retrieval"
+
+[[package]]
 name = "pytest"
 version = "7.3.0"
 requires_python = ">=3.7"
@@ -265,7 +270,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "4.1"
-content_hash = "sha256:dacb3ac970aa48a84e767382b50a836591a515dd364d938cb324617f4b2855c8"
+content_hash = "sha256:2ef8031d4240e82d1f8fefeda10383d64946bd6093f13f861860108d4db148c8"
 
 [metadata.files]
 "black 23.3.0" = [
@@ -475,6 +480,9 @@ content_hash = "sha256:dacb3ac970aa48a84e767382b50a836591a515dd364d938cb324617f4
 "pyflakes 3.0.1" = [
     {url = "https://files.pythonhosted.org/packages/af/4c/b1c7008aa7788b3e26c06c60aa18da7d3aa1f00e344aa3f18ac92768854b/pyflakes-3.0.1-py2.py3-none-any.whl", hash = "sha256:ec55bf7fe21fff7f1ad2f7da62363d749e2a470500eab1b555334b67aa1ef8cf"},
     {url = "https://files.pythonhosted.org/packages/f2/51/506ddcfab10d708e8460554cc1cf37c727a6a2cccbad8dfe57766cfce33c/pyflakes-3.0.1.tar.gz", hash = "sha256:ec8b276a6b60bd80defed25add7e439881c19e64850afd9b346283d4165fd0fd"},
+]
+"pystemmer 2.2.0.1" = [
+    {url = "https://files.pythonhosted.org/packages/01/5e/d2db082b8da23972a434aeda9180864f825478b7bf3b5f035c2007e2a0bd/PyStemmer-2.2.0.1.tar.gz", hash = "sha256:9f3b366f1ed06b49dc1868bf0aefd884423db80f3431be442d0f993e448cc67b"},
 ]
 "pytest 7.3.0" = [
     {url = "https://files.pythonhosted.org/packages/2b/a6/22c1138c2a7b60c9eb9ddeac017d82a58dfd9661651c721e7466af648764/pytest-7.3.0.tar.gz", hash = "sha256:58ecc27ebf0ea643ebfdf7fb1249335da761a00c9f955bcd922349bcb68ee57d"},

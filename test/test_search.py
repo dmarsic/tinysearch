@@ -17,7 +17,7 @@ def test_search():
         "Brown Bear, Brown Bear, What Do You See?",
     ]
     query = "bear"
-    expected_count = 3  # We don't stem so "bears" doesn't match
+    expected_count = 4  # use of stemming ensures that bear and bears have the same stem
     expected_top_result = "Brown Bear, Brown Bear, What Do You See?"
 
     s = Search(docs, query)

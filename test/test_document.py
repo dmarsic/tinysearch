@@ -15,14 +15,14 @@ def test_document():
         {"text": "foo", "expected": ["foo"]},
         {
             "text": "There should be one-- and preferably only one --obvious way to do it.",
-            "expected": [
+            "expected": [  # this is specific to the chosen stemmer
                 "there",
                 "should",
                 "be",
                 "one--",
                 "and",
-                "preferably",
-                "only",
+                "prefer",
+                "onli",
                 "one",
                 "--obvious",
                 "way",

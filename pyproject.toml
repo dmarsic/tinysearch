@@ -23,7 +23,9 @@ description = "Tiny one-phase search engine"
 authors = [
     {name = "Domagoj Marsic", email = "dmars@protonmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "pystemmer>=2.2.0.1",
+]
 requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "Apache-2.0"}

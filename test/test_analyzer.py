@@ -13,7 +13,12 @@ def test_analyzer():
         },
         {
             "text": "Audacious, original and haunting",
-            "expected": ["audacious", "original", "and", "haunting"],
+            "expected": [
+                "audaci",
+                "origin",
+                "and",
+                "haunt",
+            ],  # this is based on the chosen stemmer
         },
     ]
 
