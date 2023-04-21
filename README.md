@@ -1,10 +1,12 @@
 # TinySearch
 
-TinySearch is a tiny one-phase search engine. It is extremely easy to use
-and works well with simple lists where the query may not match the document
-text exactly.
+TinySearch is a tiny one-phase search engine. It is extremely easy to
+use and works well with simple lists where the query may not match the
+document text exactly.
 
-This is a minimal search engine. You don't need to run a separate, big instances of search engine when your use case is a few hundreds or thousands small documents.
+This is a minimal search engine. You don't need to run separate, big
+instances of search engine when your use case is a few hundreds or
+thousands small documents.
 
 ## Example
 
@@ -65,9 +67,9 @@ When you pass documents to the `Search` object, each document is
 tokenized and transformed for easier search. The same process is
 applied to the query.
 
-Then each document is scored using the TF-IDF algorithm to find the best
-match, and matches are returned sorted to the user. The best match is
-at the top.
+Then each document is scored using the TF-IDF algorithm to find the
+best match, and matches are returned sorted to the user. The best match
+is at the top.
 
 ## License
 
