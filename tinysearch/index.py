@@ -1,3 +1,18 @@
+"""Index represents a reverted index.
+
+Reverted index is a structure enabling search. It contains documents,
+and each document has been parsed / analyzed to generate a list of
+tokens (terms).
+
+Then the search operates on the indexed documents to find the best results
+for a given query.
+
+Example usage:
+
+    docs = [...]  # List of strings
+    i = Index(docs)
+    print(i.docs)
+"""
 from typing import List
 
 from tinysearch.document import Document

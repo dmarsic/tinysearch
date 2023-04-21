@@ -1,3 +1,30 @@
+"""Search runs a query against the index and finds best matches.
+
+Index is a collection of processed documents. When a user passes
+a query, the documents are scored against the query to find the
+best matches.
+
+Search provides results (see Results class), which contains scores
+for all documents. The higher score is the better. Scoring is done
+by applying the TF-IDF algorithm.
+
+Users of this class will typically be interested in matches, which
+is a filtered list of all results where the score is larger than
+0.0, indicating that the document contains one or more query terms.
+
+Example usage:
+
+    docs = [...]  # List of strings
+    query = "city lights"
+    s = Search(docs, query)
+
+    print(s.results.count)
+    # 4
+
+    print(s.results.matches[0])
+    # Result(doc=..., score=0.20)
+"""
+
 from dataclasses import dataclass
 from math import log
 from typing import List
