@@ -19,7 +19,6 @@ from tinysearch.document import Document
 
 
 class Index:
-
     def __init__(self, docs: List[str]) -> None:
         self.docs = self.process_docs(docs)
 
@@ -30,4 +29,3 @@ class Index:
             d.analyze()
             processed.append(d)
         return processed
-

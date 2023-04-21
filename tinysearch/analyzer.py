@@ -40,5 +40,3 @@ class Analyzer:
         tokens = [token.lower() for token in tokens]
 
         return tokens
-
-

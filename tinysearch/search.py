@@ -69,7 +69,6 @@ class Results:
 
 
 class Search:
-
     def __init__(self, docs: List[str], query: str) -> None:
         self.index = Index(docs)
         self.query = query

@@ -30,6 +30,7 @@ class Document:
     It can be parsed or analyzed, which produces a tokenized
     list (also called terms).
     """
+
     def __init__(self, original: str):
         self.original = original
         self.tokens = Counter()
