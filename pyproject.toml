@@ -18,7 +18,7 @@ fmt = "black ."
 
 [project]
 name = "tinysearch"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Tiny one-phase search engine"
 authors = [
     {name = "Domagoj Marsic", email = "dmars@protonmail.com"},
@@ -29,7 +29,19 @@ dependencies = [
 requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["search", "engine"]
+
+[project.urls]
+Homepage = "https://github.com/dmarsic/tinysearch"
+
+[tool.pdm.version]
+source = "scm"
 
 [build-system]
-requires = ["pdm-backend"]
+requires = ["pdm-backend", "setuptools-git-versioning"]
 build-backend = "pdm.backend"
