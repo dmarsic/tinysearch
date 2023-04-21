@@ -54,6 +54,9 @@ class Results:
     def __str__(self):
         return str(self.results)
 
+    def __repr__(self):
+        return self.__str__()
+
     def append(self, result: Result) -> None:
         self.results.append(result)
         if result.score > 0.0:
@@ -77,6 +80,12 @@ class Search:
         self.query = query
         self.results = Results()
         self.search()
+
+    def __str__(self):
+        return f"Search[query='{self.query}', matches={self.results.count}]"
+
+    def __repr__(self):
+        return self.__str__()
 
     def search(self) -> Results:
         self.score_docs(self.query)

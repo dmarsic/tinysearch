@@ -22,6 +22,12 @@ class Index:
     def __init__(self, docs: List[str]) -> None:
         self.docs = self.process_docs(docs)
 
+    def __str__(self):
+        return f"Index[docs={len(self.docs)}]"
+
+    def __repr__(self):
+        return self.__str__()
+
     def process_docs(self, docs: List[str]) -> List[Document]:
         processed = []
         for doc in docs:

@@ -38,7 +38,10 @@ class Document:
         self.tokens = self.analyze()
 
     def __str__(self):
-        return f'"{self.original}"'
+        return f"Document['{self.original}']"
+
+    def __repr__(self):
+        return self.__str__()
 
     def analyze(self) -> Counter:
         """Parses the original text into a list of tokens."""
