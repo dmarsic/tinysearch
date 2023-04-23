@@ -4,6 +4,8 @@ dev = [
     "pytest>=7.3.0",
     "pytest-cov>=4.0.0",
     "black>=23.3.0",
+    "pyflame>=0.3.0",
+    "ipython>=8.12.0",
 ]
 lint = [
     "flake8",

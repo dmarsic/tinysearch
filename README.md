@@ -93,6 +93,46 @@ Then each document is scored using the TF-IDF algorithm to find the
 best match, and matches are returned sorted to the user. The best match
 is at the top.
 
+## Performance
+
+Performance is important since search engines typically respond to
+user queries, so it should generate results in a few seconds at most.
+More than that would appear as a significant delay.
+
+The numbers below are dependent on the running machine, so they are
+just indicative.
+
+```mermaid
+gantt
+title Search time for different dataset sizes [s]
+dateFormat X
+axisFormat %s
+
+section 100
+0.1, terms=1 : 0, 0.1s
+0.1, terms=2 : 0, 0.1s
+0.1, terms=3 : 0, 0.1s
+
+section 1000
+0.9, terms=1 : 0, 0.9s
+0.9, terms=2 : 0, 0.9s
+0.9, terms=3 : 0, 0.9s
+
+section 10000
+9.2, terms=1 : 0, 9.2s
+9.1, terms=2 : 0, 9.1s
+9.1, terms=3 : 0, 9.1s
+
+section 52478
+46.9, terms=1 : 0, 46.9s
+53.8, terms=2 : 0, 53.8s
+46.2, terms=3 : 0, 46.2s
+```
+
+Datasets of around 1000 entries might generate reasonable search times,
+which is the intended use case for TinySearch. Still, there is probably
+room for improvement.
+
 ## License
 
 See LICENSE.

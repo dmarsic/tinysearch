@@ -25,6 +25,7 @@ Example usage:
     # Result(doc=..., score=0.20)
 """
 
+from collections import defaultdict
 from dataclasses import dataclass
 from math import log
 from typing import List
@@ -91,33 +92,32 @@ class Search:
         return self.__str__()
 
     def search(self) -> Results:
-        self.score_docs(self.query)
+        """Search builds a result set of matched documents.
 
-    def score_docs(self, query: str):
+        It takes the query and splits it into tokens, and then
+        calculates TF-IDF score for each document for each query
+        token. A final TF-IDF score is the sum of TF-IDF scores
+        for each query token.
+        """
+        query_tokens = self.analyzer.analyze(self.query)
+
+        # Store the number of documents each query token appears in.
+        occurs = defaultdict(int)
         for doc in self.index.docs:
-            score = self.score_doc(doc, query)
-            self.results.append(Result(doc, score))
+            for token in query_tokens:
+                occurs[token] += int(token in doc.tokens)
 
-    def score_doc(self, doc: Document, query: str) -> float:
-        tfidf_sum = 0.0
-        query_tokens = self.analyzer.analyze(query)
-        for t in query_tokens:
-            tfidf_sum += self.calculate_tfidf(doc, t)
-        return tfidf_sum
-
-    def calculate_tfidf(self, doc: Document, query_token: str) -> float:
-        tf = doc.tokens[query_token] / sum(doc.tokens.values())
-
-        doc_count = len(self.index.docs)
-        contains_word_count = 0
+        # Calculate TF-IDF for each document.
         for doc in self.index.docs:
-            if query_token in doc.tokens:
-                contains_word_count += 1
-        if contains_word_count == 0:
-            return 0.0
+            tfidf_sum = 0.0
 
-        idf = log(doc_count / contains_word_count)
+            for token in query_tokens:
+                if occurs[token] == 0:
+                    continue
 
-        tfidf = tf * idf
+                tf = doc.tokens[token] / sum(doc.tokens.values())
+                idf = log(len(self.index.docs) / occurs[token])
 
-        return tfidf
+                tfidf_sum += tf * idf
+
+            self.results.append(Result(doc, tfidf_sum))
