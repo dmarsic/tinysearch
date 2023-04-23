@@ -21,21 +21,24 @@ from tinysearch.base.analyzer import Analyzer
 
 
 class SimpleEnglishAnalyzer(Analyzer):
-    @classmethod
-    def remove_nonchars(cls, token: str) -> str:
-        m = re.search(r"[\w\-]+", token)
-        if m:
-            token = m.group(0)
-        return token
+    def __init__(self):
+        super().__init__()
+        self.stemmer = Stemmer.Stemmer("english")
 
     @classmethod
-    def stem(cls, token: str) -> str:
-        stemmer = Stemmer.Stemmer("english")
-        return stemmer.stemWord(token)
+    def remove_nonchars(cls, token: str) -> str:
+        new_chars = []
+        for c in token:
+            if c.isalnum() or c == "-":
+                new_chars.append(c)
+        return ''.join(new_chars)
 
     @classmethod
     def lower(cls, token: str) -> str:
         return token.lower()
+
+    def stem(self, token: str) -> str:
+        return self.stemmer.stemWord(token)
 
     def analyze(self, text: str) -> List[str]:
         """Transforms input text to a list of tokens."""

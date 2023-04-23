@@ -114,19 +114,19 @@ section 100
 0.1, terms=3 : 0, 0.1s
 
 section 1000
-0.9, terms=1 : 0, 0.9s
-0.9, terms=2 : 0, 0.9s
-0.9, terms=3 : 0, 0.9s
+0.6, terms=1 : 0, 0.6s
+0.6, terms=2 : 0, 0.6s
+0.5, terms=3 : 0, 0.5s
 
 section 10000
-9.2, terms=1 : 0, 9.2s
-9.1, terms=2 : 0, 9.1s
-9.1, terms=3 : 0, 9.1s
+5.2, terms=1 : 0, 5.2s
+4.9, terms=2 : 0, 4.9s
+4.9, terms=3 : 0, 4.9s
 
 section 52478
-46.9, terms=1 : 0, 46.9s
-53.8, terms=2 : 0, 53.8s
-46.2, terms=3 : 0, 46.2s
+26.8, terms=1 : 0, 26.8s
+26.8, terms=2 : 0, 26.8s
+26.8, terms=3 : 0, 26.8s
 ```
 
 Datasets of around 1000 entries might generate reasonable search times,

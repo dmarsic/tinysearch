@@ -130,3 +130,6 @@ dmypy.json
 
 # Issues https://github.com/dmarsic/issues
 .issues/
+
+# Performance stuff, currently not intended for publishing
+perf/
