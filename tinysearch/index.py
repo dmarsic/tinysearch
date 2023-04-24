@@ -35,6 +35,5 @@ class Index:
         processed = []
         for doc in docs:
             d = Document(doc, analyzer=self.analyzer)
-            d.analyze()
             processed.append(d)
         return processed
