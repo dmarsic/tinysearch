@@ -3,6 +3,9 @@ Analyzer transforms input text into a token list.
 
 It has a single public method: analyze
 
+analyze method will be called a lot, it needs to be optimized for
+performance as much as possible.
+
 Example usage:
 
     a = Analyzer()
@@ -43,12 +46,4 @@ class SimpleEnglishAnalyzer(Analyzer):
         tokens = re.split(r"\s+", text)
 
         # Apply transformations on each token.
-        # new_tokens = []
-        # for token in tokens:
-        #     token = self.remove_nonchars(token)
-        #     token = self.lower(token)
-        #     token = self.stem(token)
-        #     new_tokens.append(token)
-        # tokens = new_tokens
-        # return tokens
         return [self.stem(self.lower(self.remove_nonchars(token))) for token in tokens]

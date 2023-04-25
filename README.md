@@ -115,23 +115,46 @@ section 100
 
 section 1000
 0.3, terms=1 : 0, 0.3s
-0.3, terms=2 : 0, 0.3s
+0.2, terms=2 : 0, 0.2s
 0.3, terms=3 : 0, 0.3s
 
 section 10000
-2.8, terms=1 : 0, 2.8s
-2.8, terms=2 : 0, 2.8s
-3.0, terms=3 : 0, 3.0s
+2.7, terms=1 : 0, 2.7s
+2.7, terms=2 : 0, 2.7s
+2.7, terms=3 : 0, 2.7s
 
 section 52478
-18.4, terms=1 : 0, 18.4s
-15.3, terms=2 : 0, 15.3s
-15.4, terms=3 : 0, 15.4s
+15.1, terms=1 : 0, 15.6s
+15.4, terms=2 : 0, 15.1s
+15.6, terms=3 : 0, 15.2s
 ```
 
 Datasets of around 1000 entries might generate reasonable search times,
 which is the intended use case for TinySearch. Still, there is probably
 room for improvement.
+
+## Can we make it faster?
+
+Most time is spent in analyzer, so improving performance means
+improving processing time of the analyzer. The default
+`SimpleEnglishAnalyzer` has already been highly optimized.
+
+The next step to consider is to split the search into two phases:
+indexing and searching. Since analyzer needs to process every document,
+indexing can happen earlier in the process execution and searching when
+the user requests it. This has an additional benefit of indexing once
+and searching multiple times.
+
+```python
+from tinysearch.index import Index
+from tinysearch.search import Search
+
+i = Index(docs)
+
+# ...later...
+s = Search(i, query)
+print(s.results.matches[0])
+```
 
 ## License
 
