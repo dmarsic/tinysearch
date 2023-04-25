@@ -28,7 +28,7 @@ Example usage:
 from collections import defaultdict
 from dataclasses import dataclass
 from math import log
-from typing import List
+from typing import List, Union
 
 from tinysearch.index import Index
 from tinysearch.document import Document
@@ -74,7 +74,7 @@ class Results:
 
 
 class Search:
-    def __init__(self, docs: List[str], query: str, analyzer: Analyzer = None) -> None:
+    def __init__(self, docs: Union[Index, List[str]], query: str, analyzer: Analyzer = None) -> None:
         if query is None:
             raise ValueError("Query must be text.")
 
@@ -82,7 +82,7 @@ class Search:
 
         self.query = query
         self.results = Results()
-        self.index = Index(docs, analyzer=self.analyzer)
+        self.index = docs if isinstance(docs, Index) else Index(docs, analyzer=self.analyzer)
         self.search()
 
     def __str__(self):

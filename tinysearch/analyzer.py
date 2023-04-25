@@ -43,11 +43,12 @@ class SimpleEnglishAnalyzer(Analyzer):
         tokens = re.split(r"\s+", text)
 
         # Apply transformations on each token.
-        new_tokens = []
-        for token in tokens:
-            token = self.remove_nonchars(token)
-            token = self.lower(token)
-            token = self.stem(token)
-            new_tokens.append(token)
-        tokens = new_tokens
-        return tokens
+        # new_tokens = []
+        # for token in tokens:
+        #     token = self.remove_nonchars(token)
+        #     token = self.lower(token)
+        #     token = self.stem(token)
+        #     new_tokens.append(token)
+        # tokens = new_tokens
+        # return tokens
+        return [self.stem(self.lower(self.remove_nonchars(token))) for token in tokens]
