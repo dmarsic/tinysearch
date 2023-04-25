@@ -27,11 +27,7 @@ class SimpleEnglishAnalyzer(Analyzer):
 
     @classmethod
     def remove_nonchars(cls, token: str) -> str:
-        new_chars = []
-        for c in token:
-            if c.isalnum() or c == "-":
-                new_chars.append(c)
-        return ''.join(new_chars)
+        return "".join([c for c in token if c.isalnum() or c == "-"])
 
     @classmethod
     def lower(cls, token: str) -> str:

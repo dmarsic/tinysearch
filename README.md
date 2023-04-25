@@ -109,24 +109,24 @@ dateFormat X
 axisFormat %s
 
 section 100
-0.1, terms=1 : 0, 0.1s
-0.1, terms=2 : 0, 0.1s
-0.1, terms=3 : 0, 0.1s
+0.0, terms=1 : 0, 0.0s
+0.0, terms=2 : 0, 0.0s
+0.0, terms=3 : 0, 0.0s
 
 section 1000
-0.6, terms=1 : 0, 0.6s
-0.6, terms=2 : 0, 0.6s
-0.5, terms=3 : 0, 0.5s
+0.3, terms=1 : 0, 0.3s
+0.3, terms=2 : 0, 0.3s
+0.3, terms=3 : 0, 0.3s
 
 section 10000
-5.2, terms=1 : 0, 5.2s
-4.9, terms=2 : 0, 4.9s
-4.9, terms=3 : 0, 4.9s
+2.8, terms=1 : 0, 2.8s
+2.8, terms=2 : 0, 2.8s
+3.0, terms=3 : 0, 3.0s
 
 section 52478
-26.8, terms=1 : 0, 26.8s
-26.8, terms=2 : 0, 26.8s
-26.8, terms=3 : 0, 26.8s
+18.4, terms=1 : 0, 18.4s
+15.3, terms=2 : 0, 15.3s
+15.4, terms=3 : 0, 15.4s
 ```
 
 Datasets of around 1000 entries might generate reasonable search times,
