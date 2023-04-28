@@ -26,7 +26,8 @@ def test_integration(docs):
     ]
 
     for q in queries:
-        s = Search(docs, q["query"])
+        s = Search(docs)
+        s.search(q["query"])
         print("Query:", q)
         print(s.results.matches)
         assert s.results.count == q["results"]

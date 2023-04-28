@@ -5,7 +5,8 @@ def test_index_no_docs():
     docs = []
     expected_count = 0
 
-    i = Index(docs)
+    i = Index()
+    i.index_docs(docs)
     assert len(i.docs) == expected_count
 
 
@@ -17,7 +18,8 @@ def test_index():
         "We're Going on a Bear Hunt",
         "Brown Bear, Brown Bear, What Do You See?",
     ]
-    i = Index(docs)
+    i = Index()
+    i.index_docs(docs)
     assert len(i.docs) == len(docs)
     for n, doc in enumerate(docs):
         assert i.docs[n].original == doc

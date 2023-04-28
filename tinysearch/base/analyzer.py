@@ -22,9 +22,8 @@ Example usage:
 """
 
 import re
-from typing import List
 
 
 class Analyzer:
-    def analyze(self, text: str) -> List[str]:
+    def analyze(self, text: str) -> list[str]:
         return re.split(r"\s+", text)

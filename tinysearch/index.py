@@ -10,20 +10,19 @@ for a given query.
 Example usage:
 
     docs = [...]  # List of strings
-    i = Index(docs)
+    i = Index()
+    i.index_docs(docs)
     print(i.docs)
 """
-from typing import List
-
 from tinysearch.document import Document
 from tinysearch.base.analyzer import Analyzer
 from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 class Index:
-    def __init__(self, docs: List[str], analyzer: Analyzer = None) -> None:
+    def __init__(self, analyzer: Analyzer = None) -> None:
         self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
-        self.docs = self.process_docs(docs)
+        self.docs = []
 
     def __str__(self):
         return f"Index[docs={len(self.docs)}, analyzer={self.analyzer.__class__}]"
@@ -31,9 +30,10 @@ class Index:
     def __repr__(self):
         return self.__str__()
 
-    def process_docs(self, docs: List[str]) -> List[Document]:
+    def index_docs(self, docs: list[str]) -> list[Document]:
         processed = []
         for doc in docs:
             d = Document(doc, analyzer=self.analyzer)
             processed.append(d)
+        self.docs = processed
         return processed

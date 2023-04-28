@@ -18,7 +18,6 @@ Example usage:
 
 import re
 import Stemmer
-from typing import List
 
 from tinysearch.base.analyzer import Analyzer
 
@@ -39,7 +38,7 @@ class SimpleEnglishAnalyzer(Analyzer):
     def stem(self, token: str) -> str:
         return self.stemmer.stemWord(token)
 
-    def analyze(self, text: str) -> List[str]:
+    def analyze(self, text: str) -> list[str]:
         """Transforms input text to a list of tokens."""
 
         # Split on whitespace.

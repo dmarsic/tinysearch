@@ -16,7 +16,8 @@ Example usage:
 
     docs = [...]  # List of strings
     query = "city lights"
-    s = Search(docs, query)
+    s = Search(docs)
+    s.search(query)
 
     print(s.results.count)
     # 4
@@ -28,7 +29,7 @@ Example usage:
 from collections import defaultdict
 from dataclasses import dataclass
 from math import log
-from typing import List, Union
+from typing import Union
 
 from tinysearch.index import Index
 from tinysearch.document import Document
@@ -69,21 +70,20 @@ class Results:
         return len(self._matches)
 
     @property
-    def matches(self) -> List[Result]:
+    def matches(self) -> list[Result]:
         return sorted(self._matches, key=lambda r: r.score, reverse=True)
 
 
 class Search:
-    def __init__(self, docs: Union[Index, List[str]], query: str, analyzer: Analyzer = None) -> None:
-        if query is None:
-            raise ValueError("Query must be text.")
-
+    def __init__(self, docs: Union[Index, list[str]], analyzer: Analyzer = None) -> None:
         self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
-
-        self.query = query
         self.results = Results()
-        self.index = docs if isinstance(docs, Index) else Index(docs, analyzer=self.analyzer)
-        self.search()
+
+        if isinstance(docs, Index):
+            self.index = docs
+        else:
+            self.index = Index(analyzer=self.analyzer)
+            self.index.index_docs(docs)
 
     def __str__(self):
         return f"Search[query='{self.query}', matches={self.results.count}]"
@@ -91,7 +91,7 @@ class Search:
     def __repr__(self):
         return self.__str__()
 
-    def search(self) -> Results:
+    def search(self, query: str) -> Results:
         """Search builds a result set of matched documents.
 
         It takes the query and splits it into tokens, and then
@@ -99,7 +99,10 @@ class Search:
         token. A final TF-IDF score is the sum of TF-IDF scores
         for each query token.
         """
-        query_tokens = self.analyzer.analyze(self.query)
+        if not query:
+            raise ValueError("Invalid query.")
+
+        query_tokens = self.analyzer.analyze(query)
 
         # Store the number of documents each query token appears in.
         occurs = defaultdict(int)

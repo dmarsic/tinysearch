@@ -49,7 +49,8 @@ docs = [
 ]
 query = "bear"
 
-s = Search(docs, query)
+s = Search(docs)
+s.search(query)
 
 # How many results?
 print(s.results.count)
@@ -149,10 +150,12 @@ and searching multiple times.
 from tinysearch.index import Index
 from tinysearch.search import Search
 
-i = Index(docs)
+i = Index()
+i.index_docs(docs)
 
 # ...later...
-s = Search(i, query)
+s = Search(i)
+s.search(query)
 print(s.results.matches[0])
 ```
 

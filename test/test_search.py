@@ -16,7 +16,8 @@ def docs():
 def test_search_empty_query():
     query = None
     with pytest.raises(ValueError):
-        s = Search(["document1"], query)
+        s = Search(["document1"])
+        s.search(query)
 
 
 def test_search(docs):
@@ -24,7 +25,8 @@ def test_search(docs):
     expected_count = 4  # use of stemming ensures that bear and bears have the same stem
     expected_top_result = "Brown Bear, Brown Bear, What Do You See?"
 
-    s = Search(docs, query)
+    s = Search(docs)
+    s.search(query)
     assert s.results.count == expected_count
     assert s.results.matches[0].doc.original == expected_top_result
 
@@ -34,7 +36,9 @@ def test_search_with_indexing_first(docs):
     expected_count = 4  # use of stemming ensures that bear and bears have the same stem
     expected_top_result = "Brown Bear, Brown Bear, What Do You See?"
 
-    i = Index(docs)
-    s = Search(i, query)
+    i = Index()
+    i.index_docs(docs)
+    s = Search(i)
+    s.search(query)
     assert s.results.count == expected_count
     assert s.results.matches[0].doc.original == expected_top_result
