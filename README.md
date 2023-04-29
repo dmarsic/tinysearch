@@ -8,6 +8,13 @@ This is a minimal search engine. You don't need to run separate, big
 instances of search engine when your use case is a few hundreds or
 thousands small documents.
 
+Features:
+- Simple to use
+- One phase search, or two phase: separate indexing and searching
+- Optimized for performance
+- Support for your own analyzer
+- Stopwords support
+
 ## Example
 
 Input documents:
@@ -110,24 +117,16 @@ dateFormat X
 axisFormat %s
 
 section 100
-0.0, terms=1 : 0, 0.0s
-0.0, terms=2 : 0, 0.0s
-0.0, terms=3 : 0, 0.0s
+0.0 : 0, 0.0s
 
 section 1000
-0.3, terms=1 : 0, 0.3s
-0.2, terms=2 : 0, 0.2s
-0.3, terms=3 : 0, 0.3s
+0.3 : 0, 0.3s
 
 section 10000
-2.7, terms=1 : 0, 2.7s
-2.7, terms=2 : 0, 2.7s
-2.7, terms=3 : 0, 2.7s
+3.1 : 0, 3.1s
 
 section 52478
-15.1, terms=1 : 0, 15.6s
-15.4, terms=2 : 0, 15.1s
-15.6, terms=3 : 0, 15.2s
+19.5 : 0, 19.5s
 ```
 
 Datasets of around 1000 entries might generate reasonable search times,
@@ -158,6 +157,30 @@ s = Search(i)
 s.search(query)
 print(s.results.matches[0])
 ```
+
+```mermaid
+gantt
+title Indexing and searching time comparison for different datasets [s]
+dateFormat X
+axisFormat %s
+
+section 100
+index :i, 0, 0.0s
+search :s, after i, 0.0s
+
+section 1000
+index : i, 0, 0.3s
+search: s, after i, 0.0s
+
+section 10000
+index : i, 0, 3.0s
+search : s, after i, 0.1s
+
+section 52478
+index : i, 0, 19.0s
+search : s, after i, 0.5s
+```
+
 
 ## License
 

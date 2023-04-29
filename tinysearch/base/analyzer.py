@@ -25,5 +25,8 @@ import re
 
 
 class Analyzer:
+    def __init__(self, stopwords: set[str] = set()):
+        self.stopwords = stopwords
+
     def analyze(self, text: str) -> list[str]:
-        return re.split(r"\s+", text)
+        return [token for token in re.split(r"\s+", text) if token.lower() not in self.stopwords]

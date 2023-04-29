@@ -29,13 +29,16 @@ class Document:
     Document is instantiated with the text value of a document.
     It can be parsed or analyzed, which produces a tokenized
     list (also called terms).
+
+    Stopwords is a set of strings that will be ignored.
     """
 
-    def __init__(self, original: str, analyzer: Analyzer = None):
+    def __init__(self, original: str, analyzer: Analyzer = None, stopwords: set[str] = set()):
         if original is None:
             raise ValueError(f"Document needs to be text.")
 
-        self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
+        self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer(stopwords)
+        self.stopwords = stopwords
 
         self.original = original
         self.tokens = self.analyze()

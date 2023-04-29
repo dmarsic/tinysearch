@@ -23,8 +23,8 @@ from tinysearch.base.analyzer import Analyzer
 
 
 class SimpleEnglishAnalyzer(Analyzer):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, stopwords: set[str] = set()):
+        super().__init__(stopwords)
         self.stemmer = Stemmer.Stemmer("english")
 
     @classmethod
@@ -45,4 +45,4 @@ class SimpleEnglishAnalyzer(Analyzer):
         tokens = re.split(r"\s+", text)
 
         # Apply transformations on each token.
-        return [self.stem(self.lower(self.remove_nonchars(token))) for token in tokens]
+        return [self.stem(self.lower(self.remove_nonchars(token))) for token in tokens if self.lower(token) not in self.stopwords]

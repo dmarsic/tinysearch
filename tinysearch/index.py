@@ -20,8 +20,9 @@ from tinysearch.analyzer import SimpleEnglishAnalyzer
 
 
 class Index:
-    def __init__(self, analyzer: Analyzer = None) -> None:
+    def __init__(self, analyzer: Analyzer = None, stopwords: set[str] = set()) -> None:
         self.analyzer = analyzer if analyzer is not None else SimpleEnglishAnalyzer()
+        self.stopwords = stopwords
         self.docs = []
 
     def __str__(self):
@@ -33,7 +34,7 @@ class Index:
     def index_docs(self, docs: list[str]) -> list[Document]:
         processed = []
         for doc in docs:
-            d = Document(doc, analyzer=self.analyzer)
+            d = Document(doc, analyzer=self.analyzer, stopwords=self.stopwords)
             processed.append(d)
         self.docs = processed
         return processed
